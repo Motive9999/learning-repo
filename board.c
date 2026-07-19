@@ -16,13 +16,16 @@ enum
 
 void print_bitboard(U64 bitboard)
 {
-    for (int rank = 7; rank >=0; rank--)
+    for (int rank = 7; rank >= 0; rank--)
     {
         for (int file = 0; file < 8; file++)
         {
             int square = rank * 8 + file;
+
+            printf(" %d ",
+            (bitboard & (1ULL << square)) ? 1 : 0);
         }
-    }    
+    }
 }
 
 int main(void)
