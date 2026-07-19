@@ -1,2 +1,2 @@
 all:
-	gcc -Os -s a.c -o a.exe
+	gcc -Os -s board.c -o a.exe
