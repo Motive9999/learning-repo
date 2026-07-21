@@ -20,6 +20,21 @@ enum
     BP, BN, BB, BR, BQ, BK
 };
 
+static inline int get_bit(U64 bitboard, int square)
+{
+    return (bitboard >> square) & 1ULL;
+}
+
+static inline void set_bit(U64 *bitboard, int square)
+{
+    *bitboard |= 1ULL << square;
+}
+
+static inline void pop_bit(U64 *bitboard, int square)
+{
+    *bitboard &= ~(1ULL << square);
+}
+
 void print_bitboard(U64 bitboard)
 {
     for (int rank = 7; rank >= 0; rank--)
@@ -46,25 +61,23 @@ int main(void)
 {
     U64 pieces[12] = {0};
 
-    pieces[WP] =
-        (1ULL << A2) |
-        (1ULL << B2) |
-        (1ULL << C2) |
-        (1ULL << D2) |
-        (1ULL << E2) |
-        (1ULL << F2) |
-        (1ULL << G2) |
-        (1ULL << H2);
+    set_bit(&pieces[WP], A2);
+    set_bit(&pieces[WP], B2);
+    set_bit(&pieces[WP], C2);
+    set_bit(&pieces[WP], D2);
+    set_bit(&pieces[WP], E2);
+    set_bit(&pieces[WP], F2);
+    set_bit(&pieces[WP], G2);
+    set_bit(&pieces[WP], H2);
 
-    pieces[BP] =
-        (1ULL << A7) |
-        (1ULL << B7) |
-        (1ULL << C7) |
-        (1ULL << D7) |
-        (1ULL << E7) |
-        (1ULL << F7) |
-        (1ULL << G7) |
-        (1ULL << H7);
+    set_bit(&pieces[BP], A7);
+    set_bit(&pieces[BP], B7);
+    set_bit(&pieces[BP], C7);
+    set_bit(&pieces[BP], D7);
+    set_bit(&pieces[BP], E7);
+    set_bit(&pieces[BP], F7);
+    set_bit(&pieces[BP], G7);
+    set_bit(&pieces[BP], H7);
 
     U64 occupied = pieces[WP] | pieces[BP];
 
